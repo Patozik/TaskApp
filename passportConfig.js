@@ -12,7 +12,7 @@ const authenticateUser = (email, password, done) => {
             console.log(result.rows);
 
             if (result.rows.length > 0) {
-                const user = results.rows[0];
+                const user = result.rows[0];
 
                 bcrypt.compare(password, user.password, (err, isMatch) => {
                     if (err) {
@@ -40,7 +40,7 @@ const authenticateUser = (email, password, done) => {
         authenticateUser
     ));
 
-    passport.serializeuser((user, done) => done(null, user.id));
+    passport.serializeUser((user, done) => done(null, user.id));
 
     passport.deserializeUser((id, done) => {
         pool.query(
